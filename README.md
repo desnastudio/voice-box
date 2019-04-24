@@ -8,12 +8,12 @@ Run `ionic serve` for a dev server. Navigate to `http://localhost:3000/`. The ap
 
 ## Build
 
-Run `ionic build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Run `ionic build` to build the project. The build artifacts will be stored in the `www/` directory. Use the `--prod` flag for a production build.
 
 ## Further help
 
 To get more help on the Ionic CLI use `ionic help` or go check out the [Ionic CLI README](https://github.com/ionic-team/ionic/blob/master/README.md).
 
-## Additional Info
+## Additional info
 
-In app used Dropbox App Key in src/providers/dropbox/dropbox.ts
+In app used Dropbox App Key in `src/providers/dropbox/dropbox.ts`
