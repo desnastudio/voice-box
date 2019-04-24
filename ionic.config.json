@@ -1,0 +1,8 @@
+{
+  "name": "voice-box",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular",
+  "id": "1e4e5376"
+}

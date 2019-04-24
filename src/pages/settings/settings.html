@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-title>
+      Settings
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding text-center>
+  <ion-card>
+    <ion-item>
+      <ion-icon name="microphone" item-start></ion-icon>
+      Application version
+      <ion-badge color="secondary" item-end>1.0.4</ion-badge>
+    </ion-item>
+  </ion-card>
+
+  <button ion-button icon-start color="secondary" (click)="login()" *ngIf="!isAuth">
+    <ion-icon name="log-in"></ion-icon>
+    Login to Dropbox
+  </button>
+
+  <button ion-button icon-start color="secondary" (click)="logout()" *ngIf="isAuth">
+    <ion-icon name="log-out"></ion-icon>
+    Logout from Dropbox
+  </button>
+
+</ion-content>

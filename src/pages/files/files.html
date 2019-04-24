@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-title>Dropbox audio list</ion-title>
+    <ion-buttons start>
+      <button ion-button *ngIf="depth" (click)="goBack()"><ion-icon name="arrow-back"></ion-icon> Back</button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div *ngIf="!isAuth">
+    <p>Please, <a href="#" (click)="gotoSettings()">authorize in Dropbox</a> before load list.</p>
+  </div>
+  <div *ngIf="isAuth">
+  <h2>
+    <a href="#" (click)="openUrl('https://www.dropbox.com/home/')">Go to Dropbox</a>
+  </h2>
+
+  <ion-card>
+    <ion-card-header>
+      <strong>Files in Dropbox</strong>
+    </ion-card-header>
+
+    <ion-list>
+      <div *ngFor="let item of folders">
+        <ion-item *ngIf="item['.tag'] == 'item'" detail-push (click)="openFolder(item.path_lower)">
+          {{item.name}}
+        </ion-item>
+        <ion-item *ngIf="item['.tag'] == 'file'">
+          {{item.name}}
+          <button ion-button clear item-end large color="secondary" (click)="playStreamAudio(item.url_play)"><ion-icon name="play"></ion-icon></button>
+          <!--<button ion-button clear item-end large color="secondary" (click)="stopStreamAudio()"><ion-icon name="square"></ion-icon></button>-->
+          <br>
+          <a href="#" (click)="openUrl(item.url)">View in Dropbox</a>
+        </ion-item>
+      </div>
+
+    </ion-list>
+  </ion-card>
+  </div>
+</ion-content>

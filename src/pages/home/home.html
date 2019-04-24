@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <p>
+    Please, click the button and say some phrase.
+  </p>
+
+  <ion-row>
+    <ion-col text-center>
+      <button id="stopRecord" ion-button large round color="danger" (click)="stopRecord()" *ngIf="recording"><div><ion-icon name="mic-off"></ion-icon>
+        <br><label>Stop<br>Record</label></div></button>
+      <button id="startRecord" ion-button large round color="secondary" (click)="startRecord()" *ngIf="!recording"><div><ion-icon name="mic"></ion-icon>
+        <br><label>Start<br>Record</label></div></button>
+    </ion-col>
+  </ion-row>
+
+  <ion-card>
+    <ion-card-header>
+      <strong>Records List not in Dropbox</strong>
+    </ion-card-header>
+    <ion-list id="recordsList">
+      <ion-item *ngFor="let audio of audioList; index as i;">
+        <p>{{audio.filename}}</p>
+        <button ion-button clear item-end large color="secondary" (click)="playAudio(audio.filename)" *ngIf="!playing"><ion-icon name="play"></ion-icon></button>
+        <button ion-button clear item-end large color="secondary" (click)="stopAudio(audio.filename)" *ngIf="playing"><ion-icon name="square"></ion-icon></button>
+
+        <button ion-button clear item-end large color="secondary" (click)="uploadFile(audio.filename)" [disabled]="!isAuth"><ion-icon name="cloud-upload"></ion-icon></button>
+
+        <button ion-button clear item-end large color="danger" (click)="removeAudio(audio.filename)"><ion-icon name="trash"></ion-icon></button>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <strong>Current session Dropbox Shared Links</strong>
+    </ion-card-header>
+    <ion-list id="sharedLinksList">
+      <div *ngFor="let item of sharedLinks">
+        <ion-item>
+          {{item.name}}
+          <button ion-button clear item-end large color="secondary" (click)="playStreamAudio(item.url_play)"><ion-icon name="play"></ion-icon></button>
+          <!--<button ion-button clear item-end large color="secondary" (click)="stopStreamAudio()"><ion-icon name="square"></ion-icon></button>-->
+          <br>
+          <a href="#" (click)="openUrl(item.url)">View in Dropbox</a>
+        </ion-item>
+      </div>
+    </ion-list>
+  </ion-card>
+
+  <!--<button ion-button (click)="uploadFile('bg.png')">Upload</button>-->
+  <!--<audio controls autoplay #myTrack></audio>-->
+
+  <!--<h5>Info</h5>
+  <div id="log">
+    <ion-row *ngFor="let item of log" text-wrap>
+      <ion-col>[{{ item.time }}]</ion-col>
+      <ion-col>{{ item.msg }}</ion-col>
+    </ion-row>
+  </div>-->
+</ion-content>
